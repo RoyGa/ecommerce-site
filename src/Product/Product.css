@@ -1,0 +1,55 @@
+.product-card {
+    padding: 2%;
+    padding-bottom: 1%;
+    flex-grow: 1;
+    flex-basis: 16%;
+    flex-direction: column;
+    background-color: white;
+    cursor: pointer;
+
+    box-sizing: border-box;
+  
+    display: flex; /* so child elements can use flexbox stuff too! */
+    margin: 2px;
+}
+
+.product-image img {
+    max-width: 100%;
+   
+}
+
+.product-info {
+    
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+   
+}
+
+.product-title {
+    margin-right: auto;
+    padding: 0;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+.product-brand {
+    margin-right: auto;
+    padding: 0;
+    color: gray;
+    letter-spacing: 2px;
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.product-price {
+    margin-right: auto;
+    margin-top: 5px;
+    padding: 0;
+    color: gray;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
