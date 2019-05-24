@@ -28,14 +28,6 @@ export class ProductsService {
     this.products = [...this.products, product];
   }
 
-  /*
-  updateProduct(updateProduct: ProductItem): void {
-    this.products = this.products.map((product: ProductItem) =>  product.id === updateTodo.id ? updateTodo : todo);
-
-    if(updateTodo.complete) updateTodo.temp = 'check_box';
-    else updateTodo.temp = 'check_box_outline_blank';
-  }*/
-
   getProducts(): ProductItem[] {
     return this.products;
   }
@@ -56,28 +48,4 @@ export class ProductsService {
     return sct;
   } 
 
-  /*
-  deleteTodo(todoToDelete: TodoItem): void {
-    this.todos = this.todos.filter((todo: TodoItem) => todo.id !== todoToDelete.id);
-  }
 
-  promoteTodo(todoItem: TodoItem): void {
-    const indexOfTodo = this.todos.findIndex((todo) => todo.id === todoItem.id);
-    if (indexOfTodo === 0 ) {
-      return;
-    }
-    this.todos = [
-      ...this.todos.slice(0, indexOfTodo - 1),
-      this.todos[indexOfTodo], this.todos[indexOfTodo - 1],
-      ...this.todos.slice(indexOfTodo + 1)
-    ];
-  }
-
-  demoteTodo(todoItem: TodoItem): void {
-    const indexOfTodo = this.todos.findIndex((todo) => todo.id === todoItem.id);
-    if (indexOfTodo >= this.todos.length - 1) {
-      return;
-    }
-    this.promoteTodo(this.todos[indexOfTodo + 1]);
-  }*/
-}
