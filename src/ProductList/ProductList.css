@@ -1,7 +1,7 @@
 .products {
     display: flex;
     flex-wrap: wrap;
-    background-color: rgb(204, 204, 204);
+    background-color: white;
     width: 80vw;
     margin: auto;
 }

@@ -23,7 +23,7 @@ class ShoppingCart extends React.Component <any,State> {
     constructor(props: ProductListProps) {
         super(props);
         this.state = {
-            shoppingcart: this.productsService.getShoppingCart(),
+            shoppingcart: this.productsService.getShoppingcart(),
             items: this.productsService.getProducts()
         };
     }
@@ -31,9 +31,18 @@ class ShoppingCart extends React.Component <any,State> {
     componentDidMount() {
 
     }
+    componentDidUpdate() {
+        this.state = {
+            shoppingcart: this.productsService.getShoppingcart(),
+            items: this.productsService.getProducts()
+        };
+        console.log(this.state.shoppingcart.items);
+    }
+
+
 
     deleteItemFromCart(itemId: number) {
-        console.log(itemId);
+        this.productsService.deleteItemFromShoppingcart(itemId);
         const itemIndex: number = this.state.items.findIndex(i => {
             return i.id == itemId;
         });
@@ -45,7 +54,7 @@ class ShoppingCart extends React.Component <any,State> {
     }
 
     getProductList() {
-        const products = this.state.items;
+        const products = this.state.shoppingcart.items;
         let style1 = {
             paddingTop: "5px"
         };

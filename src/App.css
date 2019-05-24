@@ -26,7 +26,7 @@
   padding: 5px;
   width: 100vw;
   box-sizing: border-box;
-  /*padding-top: 100px;*/
+  padding-top: 100px;
   /*background: rgb(245, 245, 245);*/
   overflow: hidden;
 }
@@ -53,4 +53,11 @@ h3 {
 
 .transparent {
   background-color: transparent;
+}
+
+.link {
+  color: inherit;
+}
+.link:hover {
+  all:inherit;
 }

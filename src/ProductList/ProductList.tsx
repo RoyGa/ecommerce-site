@@ -43,6 +43,7 @@ class ProductList extends React.Component <any,State> {
     render() {
         return (
             <div>
+                <h1>Temp Category</h1>
                 {this.getProductList()}
             </div>
         );

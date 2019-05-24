@@ -23,13 +23,13 @@ class ProductPage extends React.Component <any,State> {
     componentDidMount() {
         this.updateProductToShow();
     }
-    
+
     componentDidUpdate() {
         if(this.state.productId != this.props.match.params.id) this.updateProductToShow();
     }
 
     updateProductToShow(): void {
-        const product = this.getProductToShow(this.props.match.params.id);
+        const product: ProductItem = this.getProductToShow(this.props.match.params.id);
         this.setState({
             productId: this.props.match.params.id,
             productToShow: product
@@ -50,6 +50,9 @@ class ProductPage extends React.Component <any,State> {
 
     getBrandToShow(): JSX.Element | null {
         return this.state.productToShow ? <div className="product-brand">{this.state.productToShow.brand}</div> : null;
+    }
+    addItemToCart() {
+        this.productsService.addItemToShoppingcart(this.getProductToShow(this.props.match.params.id));
     }
 
     render() {
@@ -77,7 +80,7 @@ class ProductPage extends React.Component <any,State> {
                             <option value="audi">L</option>
                         </select>
                     </div>
-                    <div className="add-to-cart-button"><h1>ADD TO CART</h1></div>
+                    <div className="add-to-cart-button" onClick={()=> this.addItemToCart()}><h1>ADD TO CART</h1></div>
                 </div>
             </div>
             

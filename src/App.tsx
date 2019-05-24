@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import ProductPage from './ProductPage/ProductPage';
 import ShoppingCart from './ShoppingCart/ShoppingCart'
 import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import HomePage from './HomePage/HomePage';
 
 const App: React.FC = () => {
 
@@ -35,19 +36,22 @@ const App: React.FC = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarCollapse">
               <ul className="navbar-nav mr-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                <li className="nav-item">
+                  <Link to={'/home'} className="nav-link">Home</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Category</a>
+                  <Link to={'/bla'} className="nav-link">ProductList</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">About</a>
+                  <Link to={'/shoppingcart'} className="nav-link">Shoppingcart</Link>
                 </li>
+              
+                
                 
                
                 
               </ul>
+
               <a className="navbar-brand" href="#">
                 <i className="fa fa-shopping-cart" aria-hidden="true"></i>
                 <span className="navbar-text space">
@@ -66,11 +70,13 @@ const App: React.FC = () => {
 
         
         <div className="App-body">
-          <img src="https://ak.p2.mango.com/mangoapp/images/CATKIDS052019CBA/kids_cba_0519_1.jpg?ts=111146&imformat=generic&imwidth=1920&imdensity=1"></img>
-          {/*<ProductList products={getProducts()}/>*/}
+          {/*<img src="https://ak.p2.mango.com/mangoapp/images/CATKIDS052019CBA/kids_cba_0519_1.jpg?ts=111146&imformat=generic&imwidth=1920&imdensity=1"></img>*/}
+          
           <Switch>
+            {/*<ProductList products={getProducts()}/>*/}
+            <Route path="/home" exact component={HomePage}></Route>
             <Route path="/bla" exact component={ProductList}/>
-            
+            <Route path="/details/:id" exact component={ProductPage}/>
             <Route path="/shoppingcart" exact component={ShoppingCart}/>
           </Switch>
           

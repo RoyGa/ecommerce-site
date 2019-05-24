@@ -22,8 +22,7 @@ const Product = (props: ProductProps) => {
           <h5 className="card-title">{props.product.title}</h5>
           <p className="card-text"><small className="text-muted">{props.product.brand}</small></p>
           <p className="card-text">{props.product.price} USD</p>
-          <a href="#" className="btn btn-primary"><Link to={'/' + props.product.id}>More Details >></Link></a>
-         
+          <div className="btn btn-primary"><Link to={'/details/' + props.product.id}>More Details >></Link></div>
         </div>
       </div>
   );
