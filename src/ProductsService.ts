@@ -57,7 +57,7 @@ export class ProductsService {
 
   addItemToShoppingcart(item: ProductItem) {
     const newSctItems: ProductItem[] = [...this.shoppingcart.items, item];
-    this.shoppingcart.items = newSctItems;
+    this.shoppingcart.items = [...newSctItems];
     console.log(this.shoppingcart);
   }
 

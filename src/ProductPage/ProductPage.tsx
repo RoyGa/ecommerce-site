@@ -4,36 +4,28 @@ import { ProductItem } from '../Models/ProductItem';
 import { string } from 'prop-types';
 import { ProductsService } from '../ProductsService';
 
+/*interface ProductPageProps {
+    productId: String,
+    updateAppSct: Function
+}*/
 interface ProductPageProps {
-    productId: String
+    product: ProductItem,
+    addToCart: Function
 }
 interface State {
-    productId: number,
+    //productId: number,
     productToShow?: ProductItem
 }
 
-class ProductPage extends React.Component <any,State> {
+class ProductPage extends React.Component <ProductPageProps,State> {
     private productsService = new ProductsService();
 
     constructor(props: ProductPageProps) {
         super(props);
-        this.state = { productId: this.props.match.params.id };
+        this.state = { productToShow: props.product };
     }
 
     componentDidMount() {
-        this.updateProductToShow();
-    }
-
-    componentDidUpdate() {
-        if(this.state.productId != this.props.match.params.id) this.updateProductToShow();
-    }
-
-    updateProductToShow(): void {
-        const product: ProductItem = this.getProductToShow(this.props.match.params.id);
-        this.setState({
-            productId: this.props.match.params.id,
-            productToShow: product
-        });
     }
 
     getProductToShow(productId: number): ProductItem {
@@ -51,10 +43,7 @@ class ProductPage extends React.Component <any,State> {
     getBrandToShow(): JSX.Element | null {
         return this.state.productToShow ? <div className="product-brand">{this.state.productToShow.brand}</div> : null;
     }
-    addItemToCart() {
-        this.productsService.addItemToShoppingcart(this.getProductToShow(this.props.match.params.id));
-    }
-
+    
     render() {
         return (
         <div className="product-page-root">
@@ -74,13 +63,13 @@ class ProductPage extends React.Component <any,State> {
                     <div className="select-container">
                         <select>
                             <option value="" disabled selected>Select size</option>
-                            <option value="volvo">XS</option>
-                            <option value="saab">S</option>
-                            <option value="opel">M</option>
-                            <option value="audi">L</option>
+                            <option value="1">XS</option>
+                            <option value="2">S</option>
+                            <option value="3">M</option>
+                            <option value="4">L</option>
                         </select>
                     </div>
-                    <div className="add-to-cart-button" onClick={()=> this.addItemToCart()}><h1>ADD TO CART</h1></div>
+                    <div className="add-to-cart-button" onClick={() => this.props.addToCart(this.state.productToShow)}><h1>ADD TO CART</h1></div>
                 </div>
             </div>
             

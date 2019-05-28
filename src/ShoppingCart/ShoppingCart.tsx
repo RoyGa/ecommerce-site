@@ -2,44 +2,38 @@ import React from 'react';
 import './ShoppingCart.css';
 import { ProductItem } from '../Models/ProductItem';
 import { ShoppingCart as sct} from '../Models/ShoppingCart';
-import Product from '../Product/Product';
 import { ProductsService } from '../ProductsService';
 
 /*type ProductListProps = {
     products: ProductItem[];
 }*/
 
-interface ProductListProps {
-    shoppingcart: sct
+interface ShoppingCartProps {
+    shoppingcart: sct,
+    items: ProductItem[]
 }
 interface State {
     shoppingcart: sct,
     items: ProductItem[]
 }
 
-class ShoppingCart extends React.Component <any,State> {
+class ShoppingCart extends React.Component <ShoppingCartProps,State> {
     private productsService = new ProductsService();
 
-    constructor(props: ProductListProps) {
+    constructor(props: ShoppingCartProps) {
         super(props);
         this.state = {
-            shoppingcart: this.productsService.getShoppingcart(),
-            items: this.productsService.getProducts()
+            shoppingcart: props.shoppingcart,
+            items: props.items
         };
     }
 
-    componentDidMount() {
-
-    }
     componentDidUpdate() {
         this.state = {
-            shoppingcart: this.productsService.getShoppingcart(),
-            items: this.productsService.getProducts()
+            shoppingcart: this.props.shoppingcart,
+            items: this.props.items
         };
-        console.log(this.state.shoppingcart.items);
     }
-
-
 
     deleteItemFromCart(itemId: number) {
         this.productsService.deleteItemFromShoppingcart(itemId);
@@ -53,12 +47,17 @@ class ShoppingCart extends React.Component <any,State> {
         });
     }
 
+    getProducts(): ProductItem[] | null {
+        return this.state.items ? this.state.items : null;
+    }
+
     getProductList() {
-        const products = this.state.shoppingcart.items;
+        const products =  this.getProducts();
         let style1 = {
             paddingTop: "5px"
         };
 
+        if(products == null) return;
         let productList = (
             <div className="temp">
                 {products.map((pr,index) => {
