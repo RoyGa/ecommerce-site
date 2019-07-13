@@ -7,7 +7,9 @@ type ProductProps = {
     /*title: String;
     brand: String;
     price: number;*/
-    product: ProductItem;
+    product: ProductItem,
+    onShowMoreDetails: Function
+
 }
 const Product = (props: ProductProps) => {
   let redirectToProductPage = null;
@@ -22,7 +24,7 @@ const Product = (props: ProductProps) => {
           <h5 className="card-title">{props.product.title}</h5>
           <p className="card-text"><small className="text-muted">{props.product.brand}</small></p>
           <p className="card-text">{props.product.price} USD</p>
-          <div className="btn btn-primary"><Link to={'/details/' + props.product.id}>More Details >></Link></div>
+          <div className="btn btn-primary" onClick={() => props.onShowMoreDetails()}><Link to={'/details'}>More Details >></Link></div>
         </div>
       </div>
   );

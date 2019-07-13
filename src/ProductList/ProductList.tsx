@@ -9,13 +9,14 @@ import { ProductsService } from '../ProductsService';
 }*/
 
 interface ProductListProps {
-    products: ProductItem[]
+    //products: ProductItem[],
+    onMoreDetails: Function
 }
 interface State {
     products: ProductItem[]
 }
 
-class ProductList extends React.Component <any,State> {
+class ProductList extends React.Component <ProductListProps,State> {
     private productsService = new ProductsService();
 
     constructor(props: ProductListProps) {
@@ -23,17 +24,18 @@ class ProductList extends React.Component <any,State> {
         this.state = { products: this.productsService.getProducts()};
     }
 
-    componentDidMount() {
-
+    onShowMoreDetails = (product: ProductItem) => {
+        console.log("onShowMoreDetails");
+        console.log(product);
+        this.props.onMoreDetails(product);
     }
-
     getProductList() {
         const products = this.state.products;
 
         let productList = (
             <div className="products">
                 {products.map((pr,index) => {
-                    return <Product key={pr.id} product={pr}/>;
+                    return <Product key={pr.id} product={pr} onShowMoreDetails={() => this.onShowMoreDetails(pr)}/>;
                 })}
             </div>
         );

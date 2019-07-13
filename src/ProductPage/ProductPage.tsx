@@ -43,7 +43,7 @@ class ProductPage extends React.Component <ProductPageProps,State> {
     getBrandToShow(): JSX.Element | null {
         return this.state.productToShow ? <div className="product-brand">{this.state.productToShow.brand}</div> : null;
     }
-    
+
     render() {
         return (
         <div className="product-page-root">

@@ -3,6 +3,7 @@ import './ShoppingCart.css';
 import { ProductItem } from '../Models/ProductItem';
 import { ShoppingCart as sct} from '../Models/ShoppingCart';
 import { ProductsService } from '../ProductsService';
+import { Signer } from 'crypto';
 
 /*type ProductListProps = {
     products: ProductItem[];
@@ -49,6 +50,15 @@ class ShoppingCart extends React.Component <ShoppingCartProps,State> {
 
     getProducts(): ProductItem[] | null {
         return this.state.items ? this.state.items : null;
+    }
+
+    getTotalCartPrice = () => {
+        let sum = 0;
+        const products: ProductItem[] = this.state.shoppingcart.items;
+        if(products != null)
+            for (let p of products)
+                sum += p.price;
+        return sum;
     }
 
     getProductList() {
@@ -135,7 +145,7 @@ class ShoppingCart extends React.Component <ShoppingCartProps,State> {
                         <div className="pull-right" style={style2}>
                             <a href="" className="btn btn-success pull-right">Checkout</a>
                             <div className="pull-right" style={style1}>
-                                Total price: <b>50.00$</b>
+                                Total price: <b>{this.getTotalCartPrice()}$</b>
                             </div>
                             
                         </div>
